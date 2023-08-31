@@ -13,6 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::resources("estudantes", EstudanteController::class);
+Route::resources("disciplinas", DisciplinaController::class);
+Route::resources("provas", ProvaController::class);
+
 Route::get('/', function () {
     return view('welcome');
 });
