@@ -4,14 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class ProvaController extends Controller
+class SalaController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        return view('/salas/consulta');
     }
 
     /**
@@ -19,7 +19,7 @@ class ProvaController extends Controller
      */
     public function create()
     {
-        //
+        return view('salas/create');
     }
 
     /**
