@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('estudante', function (Blueprint $table) {
             $table->id();
+            $table->string('cpf');
             $table->string('nome');
+            $table->string('email');
             $table->date('data_nasc');
             $table->timestamps();
         });
