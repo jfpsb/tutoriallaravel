@@ -1,14 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Aluno</title>
-</head>
-<body>
-    <h2>Cadastro</h2>
-    <form >
+@extends('master')
 
+@if (session()->has('result_create'))
+    {{ session()->get('result_create') }}
+@endif
+
+@section('title')
+    <title>Cadastro de alunos</title>
+@endsection
+
+@section('content')
+    <h2>Insira os dados do aluno abaixo</h2>
+    <form action="store" method="post">
+        @csrf
+        CPF:
+        <input type="text" name="cpf" />
+        <br>
+        Nome:
+        <input type="text" name="nome" />
+        <br>
+        E-mail:
+        <input type="text" name="email" />
+        <br>
+        Data de Nascimento:
+        <input type="text" name="data_nasc" />
+        <br>
+        <br>
+        <button type="submit">Cadastrar</button>
     </form>
-</body>
-</html>
+
+    <br>
+
+    <a href="/">Retornar para início</a>
+@endsection

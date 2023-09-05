@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, "index"]);
 Route::get('/alunos', [AlunoController::class, "index"]);
 Route::get('/alunos/cadastrar', [AlunoController::class, "create"]);
+Route::post('/alunos/store', [AlunoController::class, "store"]);
 Route::get('/salas', [SalaController::class, "index"]);
 Route::get('/salas/cadastrar', [SalaController::class, "create"]);
 Route::get('/componentescurriculares', [ComponenteCurricularController::class, "index"]);

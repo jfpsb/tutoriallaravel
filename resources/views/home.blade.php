@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h2>Gerenciamento de alunos e turmas</h2>
+<h2>Gerenciamento de alunos</h2>
 
 <ul>
 <li><a href="/alunos">Página de alunos</a></li>

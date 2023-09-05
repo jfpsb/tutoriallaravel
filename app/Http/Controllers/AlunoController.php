@@ -2,16 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Aluno;
 use Illuminate\Http\Request;
 
 class AlunoController extends Controller
 {
+    public readonly Aluno $aluno;
+
+    public function __construct()
+    {
+        $this->aluno = new Aluno();
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('/alunos/consulta');
+        $alunos = $this->aluno->all();
+        return view('/alunos/consulta', ['alunos' => $alunos]);
     }
 
     /**
@@ -27,7 +36,18 @@ class AlunoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $created = $this->aluno->create([
+            'cpf' => $request->input('cpf'),
+            'nome' => $request->input('nome'),
+            'email' => $request->input('email'),
+            'data_nasc' => $request->input('data_nasc'),
+        ]);
+
+        if ($created) {
+            return redirect()->back()->with("result_create", "Aluno $created->nome foi criado com sucesso");
+        } else {
+            return redirect()->back()->with("result_create", "Erro ao criar aluno");
+        }
     }
 
     /**

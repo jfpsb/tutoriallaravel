@@ -1,0 +1,8 @@
+body {
+    font-family: "Century Gothic";
+    text-align: center;
+}
+
+input[type=submit] {
+    font-size: 90px;
+}
