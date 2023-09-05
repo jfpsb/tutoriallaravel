@@ -2,16 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Sala;
 use Illuminate\Http\Request;
 
 class SalaController extends Controller
 {
+    public readonly Sala $sala;
+
+    public function __construct()
+    {
+        $this->sala = new Sala();
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('/salas/consulta');
+        $salas = $this->sala->all();
+        return view('/salas/consulta', ['salas' => $salas]);
     }
 
     /**
@@ -27,7 +36,17 @@ class SalaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $created = $this->sala->create([
+            'predio' => $request->input('predio'),
+            'numero' => $request->input('numero'),
+            'complemento' => $request->input('complemento'),
+        ]);
+
+        if ($created) {
+            return redirect()->back()->with("result_create", "Sala $created->predio - $created->numero - $created->complemento foi criado com sucesso");
+        } else {
+            return redirect()->back()->with("result_create", "Erro ao criar sala");
+        }
     }
 
     /**

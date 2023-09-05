@@ -17,8 +17,8 @@ return new class extends Migration
             $table->unsignedBigInteger('componente_curricular');
             $table->string('periodo_ano');
             $table->string('periodo_semestre');
-            $table->timestamp('horario_inicio');
-            $table->timestamp('horario_fim');
+            $table->string('horario_inicio');
+            $table->string('horario_fim');
             $table->string('dias_semana');
             $table->timestamps();
 

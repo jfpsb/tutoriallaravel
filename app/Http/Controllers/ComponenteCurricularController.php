@@ -2,16 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ComponenteCurricular;
 use Illuminate\Http\Request;
 
 class ComponenteCurricularController extends Controller
 {
+    public readonly ComponenteCurricular $componente;
+
+    public function __construct()
+    {
+        $this->componente = new ComponenteCurricular();
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('/componentescurriculares/consulta');
+        $componentes = $this->componente->all();
+        return view('/componentescurriculares/consulta', ['componentes' => $componentes]);
     }
 
     /**
@@ -19,7 +28,7 @@ class ComponenteCurricularController extends Controller
      */
     public function create()
     {
-        //
+        return view('componentescurriculares/create');
     }
 
     /**
@@ -27,7 +36,15 @@ class ComponenteCurricularController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $created = $this->componente->create([
+            'nome' => $request->input('nome')
+        ]);
+
+        if ($created) {
+            return redirect()->back()->with("result_create", "Componente Curricular $created->nome foi criado com sucesso");
+        } else {
+            return redirect()->back()->with("result_create", "Erro ao criar componente curricular");
+        }
     }
 
     /**
