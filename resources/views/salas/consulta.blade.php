@@ -6,7 +6,9 @@
 
     <ul>
         @foreach ($salas as $sala)
-            <li>{{ $sala->predio }} - {{$sala->numero}} - {{$sala->complemento}}| <a>Editar</a> | <a>Visualizar</a></li>
+            <li>{{ $sala->predio }} - {{ $sala->numero }} - {{ $sala->complemento }}| <a
+                    href="{{ route('salas.edit', ['sala' => $sala]) }}">Editar</a> | <a
+                    href="{{ route('salas.show', ['sala' => $sala]) }}">Visualizar</a></li>
         @endforeach
     </ul>
 @endsection

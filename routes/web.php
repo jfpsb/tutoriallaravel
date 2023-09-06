@@ -36,6 +36,10 @@ Route::get('/alunos/matriculas/{aluno}', [MatriculaController::class, "create"])
 Route::get('/salas', [SalaController::class, "index"]);
 Route::get('/salas/cadastrar', [SalaController::class, "create"]);
 Route::post('/salas/store', [SalaController::class, "store"]);
+Route::get('/salas/{sala}', [SalaController::class, "show"])->name('salas.show');
+Route::get('/salas/{sala}/editar', [SalaController::class, "edit"])->name('salas.edit');
+Route::put('/salas/{id}', [SalaController::class, "update"])->name('salas.update');
+Route::delete('/salas/{sala}', [SalaController::class, "destroy"])->name('salas.destroy');
 
 //Componentes curriculares
 Route::get('/componentescurriculares', [ComponenteCurricularController::class, "index"]);

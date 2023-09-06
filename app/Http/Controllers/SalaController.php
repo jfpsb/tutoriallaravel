@@ -52,17 +52,17 @@ class SalaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Sala $sala)
     {
-        //
+        return view('salas.show', ['sala' => $sala]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Sala $sala)
     {
-        //
+        return view('salas.edit', ['sala' => $sala]);
     }
 
     /**
@@ -70,14 +70,22 @@ class SalaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $updated = $this->sala->where('id', $id)->update($request->except('_token', '_method'));
+
+        if ($updated) {
+            $descricao = $this->sala->find($id)->descricao();
+            return redirect()->back()->with("result_edit", "Sala $descricao foi editada com sucesso");
+        } else {
+            return redirect()->back()->with("result_edit", "Erro ao editar sala");
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Sala $sala)
     {
-        //
+        $this->sala->where('id', $sala->id)->delete();
+        return redirect()->route('salas.index');
     }
 }
