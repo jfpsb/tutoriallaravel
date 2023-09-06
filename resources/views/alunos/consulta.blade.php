@@ -9,7 +9,9 @@
     <a href="/alunos/cadastrar">Cadastrar novo aluno</a>
     <ul>
         @foreach ($alunos as $aluno)
-            <li>{{ $aluno->nome }} | <a>Realizar Matrícula Em Componentes Curriculares</a> | <a>Editar</a> | <a>Deletar</a></li>
+            <li>{{ $aluno->nome }} | <a href="alunos/matriculas/{{ $aluno->id }}">Realizar Matrícula Em Componentes
+                    Curriculares</a> | <a href="{{ route('alunos.edit', ['aluno' => $aluno]) }}">Editar</a> | <a
+                    href="{{ route('alunos.destroy', ['aluno' => $aluno]) }}">Visualizar</a></li>
         @endforeach
     </ul>
 @endsection

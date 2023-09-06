@@ -53,17 +53,17 @@ class AlunoController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Aluno $aluno)
     {
-        //
+        return view('alunos/show', ['aluno' => $aluno]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Aluno $aluno)
     {
-        //
+        return view('alunos.edit', ['aluno' => $aluno]);
     }
 
     /**
@@ -71,14 +71,22 @@ class AlunoController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $updated = $this->aluno->where('id', $id)->update($request->except('_token', '_method'));
+
+        if ($updated) {
+            $nome = $this->aluno->find($id)->nome;
+            return redirect()->back()->with("result_edit", "Aluno $nome foi editado com sucesso");
+        } else {
+            return redirect()->back()->with("result_edit", "Erro ao editar aluno");
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Aluno $aluno)
     {
-        //
+        $this->aluno->where('id', $aluno->id)->delete();
+        return redirect()->route('alunos.index');
     }
 }

@@ -9,8 +9,11 @@
     <a href="/alocacaosalas/cadastrar">Cadastrar nova alocação de sala</a>
     <ul>
         @foreach ($alocacaosalas as $alocacaosala)
-            <li>{{ $alocacaosala->sala->descricao }} - {{ $alocacaosala->componentecurricular->nome }} -
-                {{ $alocacaosala->periodo_ano }}.{{ $alocacaosala->periodo_semestre }} | <a>Editar</a> | <a>Visualizar</a>
+            <li>{{ $salaModel->find($alocacaosala->sala)->descricao() }} -
+                {{ $componenteModel->find($alocacaosala->componente_curricular)->nome }} -
+                {{ $alocacaosala->periodo_ano }}.{{ $alocacaosala->periodo_semestre }} - {{ $alocacaosala->horario_inicio }}
+                até {{ $alocacaosala->horario_fim }} - Dias: {{ $alocacaosala->dias_semana }} | <a>Editar</a> |
+                <a>Visualizar</a>
             </li>
         @endforeach
     </ul>

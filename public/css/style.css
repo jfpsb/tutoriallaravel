@@ -3,6 +3,6 @@ body {
     text-align: center;
 }
 
-input[type=submit] {
-    font-size: 90px;
+input {
+    font-family: "Century Gothic";
 }

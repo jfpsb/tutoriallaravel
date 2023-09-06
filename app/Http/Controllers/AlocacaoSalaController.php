@@ -26,7 +26,7 @@ class AlocacaoSalaController extends Controller
     public function index()
     {
         $alocacaosalas = $this->alocacaosala->all();
-        return view('/alocacaosalas/consulta', ['alocacaosalas' => $alocacaosalas]);
+        return view('/alocacaosalas/consulta', ['alocacaosalas' => $alocacaosalas, 'salaModel' => $this->sala, 'componenteModel' => $this->componente]);
     }
 
     /**

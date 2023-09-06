@@ -1,5 +1,9 @@
 @extends('master')
 
+@if (session()->has('result_create'))
+    {{ session()->get('result_create') }}
+@endif
+
 @section('title')
     <title>Cadastro de alocação de salas</title>
 @endsection
@@ -47,5 +51,5 @@
     <br>
     <a href="/">Retornar para início</a>
     <br>
-    <a href="/componentescurriculares">Retornar para tela de componentes curriculares</a>
+    <a href="/alocacaosalas">Retornar para tela de alocações de sala</a>
 @endsection

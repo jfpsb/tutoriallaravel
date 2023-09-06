@@ -2,10 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Alocacao_Sala;
+use App\Models\Aluno;
+use App\Models\Matricula;
 use Illuminate\Http\Request;
 
 class MatriculaController extends Controller
 {
+    public readonly Aluno $aluno;
+    public readonly Alocacao_Sala $alocacaoSala;
+    public readonly Matricula $matricula;
+
+    public function __construct()
+    {
+        $this->aluno = new Aluno();
+        $this->alocacaoSala = new Alocacao_Sala();
+        $this->matricula = new Matricula();
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -17,9 +31,10 @@ class MatriculaController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Aluno $aluno)
     {
-        //
+        $alocaoes = $this->alocacaoSala->all();
+        return view('alunos/matriculas/create', ['aluno' => $aluno, 'alocacoes' => $alocaoes]);
     }
 
     /**
@@ -27,7 +42,16 @@ class MatriculaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $created = $this->matricula->create([
+            'aluno' => $request->input('aluno'),
+            'alocacao_sala' => $request->input(('alocacao_sala'))
+        ]);
+
+        if ($created) {
+            return redirect()->back()->with("result_create", "Matrícula foi realizada com sucesso");
+        } else {
+            return redirect()->back()->with("result_create", "Erro ao realizar matrícula");
+        }
     }
 
     /**
