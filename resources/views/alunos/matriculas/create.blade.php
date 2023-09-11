@@ -23,5 +23,15 @@
                 <option value="{{ $alocacao->id }}">{{ $alocacao->descricao() }}</option>
             @endforeach
         </select>
+
+        <br>
+        <br>
+
+        <button type="submit">Finalizar</button>
+
     </form>
+
+    <a href="/">Retornar para início</a>
+    <br>
+    <a href="/alunos">Retornar para tela de alunos</a>
 @endsection

@@ -22,7 +22,7 @@
         </select>
         <br>
         Componente Curricular:
-        <select name="componente">
+        <select name="componente_curricular">
             <option>Seleciona um componente</option>
             @foreach ($componentes as $componente)
                 <option value="{{ $componente->id }}">{{ $componente->nome }}</option>

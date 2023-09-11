@@ -10,7 +10,8 @@
 
     <ul>
         @foreach ($componentes as $componente)
-            <li>{{ $componente->nome }} | <a>Editar</a> | <a>Visualizar</a></li>
+            <li>{{ $componente->nome }} | <a
+                    href="{{ route('componentescurriculares.edit', ['componente' => $componente]) }}">Editar</a></li>
         @endforeach
     </ul>
 @endsection

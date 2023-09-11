@@ -81,8 +81,9 @@ class MatriculaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Matricula $matricula, Aluno $aluno)
     {
-        //
+        $this->matricula->where('id', $matricula->id)->delete();
+        return redirect()->route('.index');
     }
 }

@@ -3,15 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Models\Aluno;
+use App\Models\Matricula;
 use Illuminate\Http\Request;
 
 class AlunoController extends Controller
 {
     public readonly Aluno $aluno;
+    public readonly Matricula $matricula;
 
     public function __construct()
     {
         $this->aluno = new Aluno();
+        $this->matricula = new Matricula();
     }
 
     /**
@@ -55,7 +58,8 @@ class AlunoController extends Controller
      */
     public function show(Aluno $aluno)
     {
-        return view('alunos/show', ['aluno' => $aluno]);
+        $matriculas = $this->matricula->where('aluno', $aluno->id)->get();
+        return view('alunos/show', ['aluno' => $aluno, 'matriculas' => $matriculas]);
     }
 
     /**

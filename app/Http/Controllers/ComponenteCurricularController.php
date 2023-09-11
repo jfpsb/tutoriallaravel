@@ -19,7 +19,7 @@ class ComponenteCurricularController extends Controller
      */
     public function index()
     {
-        $componentes = $this->componente->all();
+        $componentes = $this->componente::orderBy('nome')->get();
         return view('/componentescurriculares/consulta', ['componentes' => $componentes]);
     }
 
@@ -58,9 +58,9 @@ class ComponenteCurricularController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(ComponenteCurricular $componente)
     {
-        //
+        return view('componentescurriculares.edit', ['componente' => $componente]);
     }
 
     /**
@@ -68,14 +68,22 @@ class ComponenteCurricularController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $updated = $this->componente->where('id', $id)->update($request->except('_token', '_method'));
+
+        if ($updated) {
+            $nome = $this->componente->find($id)->nome;
+            return redirect()->back()->with("result_edit", "Componente curricular foi editado com sucesso");
+        } else {
+            return redirect()->back()->with("result_edit", "Erro ao editar componente curricular");
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(ComponenteCurricular $componente)
     {
-        //
+        $this->componente->where('id', $componente->id)->delete();
+        return redirect()->route('componentescurriculares.index');
     }
 }

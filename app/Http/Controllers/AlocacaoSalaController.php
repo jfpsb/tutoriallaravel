@@ -65,17 +65,21 @@ class AlocacaoSalaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Alocacao_Sala $alocacao)
     {
-        //
+        $salaModel = $this->sala->find($alocacao->sala);
+        $componenteModel = $this->componente->find($alocacao->componente_curricular);
+        return view('alocacaosalas.show', ['alocacao' => $alocacao, 'sala' => $salaModel, 'componente' => $componenteModel]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Alocacao_Sala $alocacao)
     {
-        //
+        $salas = $this->sala->all();
+        $componentes = $this->componente->all();
+        return view('alocacaosalas.edit', ['alocacao' => $alocacao, 'salas' => $salas, 'componentes' => $componentes]);
     }
 
     /**
@@ -83,14 +87,22 @@ class AlocacaoSalaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $updated = $this->alocacaosala->where('id', $id)->update($request->except('_token', '_method'));
+
+        if ($updated) {
+            $nome = $this->alocacaosala->find($id)->nome;
+            return redirect()->back()->with("result_edit", "Alocação foi editada com sucesso");
+        } else {
+            return redirect()->back()->with("result_edit", "Erro ao editar alocação");
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Alocacao_Sala $alocacao)
     {
-        //
+        $this->alocacaosala->where('id', $alocacao->id)->delete();
+        return redirect()->route('alocacaosalas.index');
     }
 }

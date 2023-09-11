@@ -31,6 +31,7 @@ Route::delete('/alunos/{aluno}', [AlunoController::class, "destroy"])->name('alu
 
 //Matriculas (dentro de alunos)
 Route::get('/alunos/matriculas/{aluno}', [MatriculaController::class, "create"])->name('alunos.matriculas');
+Route::post('/alunos/matriculas/store', [MatriculaController::class, "store"])->name('alunos.matriculas.store');
 
 //Salas
 Route::get('/salas', [SalaController::class, "index"]);
@@ -42,11 +43,19 @@ Route::put('/salas/{id}', [SalaController::class, "update"])->name('salas.update
 Route::delete('/salas/{sala}', [SalaController::class, "destroy"])->name('salas.destroy');
 
 //Componentes curriculares
-Route::get('/componentescurriculares', [ComponenteCurricularController::class, "index"]);
+Route::get('/componentescurriculares', [ComponenteCurricularController::class, "index"])->name('componentescurriculares.index');
 Route::get('/componentescurriculares/cadastrar', [ComponenteCurricularController::class, "create"]);
 Route::post('/componentescurriculares/store', [ComponenteCurricularController::class, "store"]);
+Route::get('/componentescurriculares/{componente}', [ComponenteCurricularController::class, "show"])->name('componentescurriculares.show');
+Route::get('/componentescurriculares/{componente}/editar', [ComponenteCurricularController::class, "edit"])->name('componentescurriculares.edit');
+Route::put('/componentescurriculares/{id}', [ComponenteCurricularController::class, "update"])->name('componentescurriculares.update');
+Route::delete('/componentescurriculares/{componente}', [ComponenteCurricularController::class, "destroy"])->name('componentescurriculares.destroy');
 
 //Alocação de salas
-Route::get('/alocacaosalas', [AlocacaoSalaController::class, "index"]);
+Route::get('/alocacaosalas', [AlocacaoSalaController::class, "index"])->name('alocacaosalas.index');
 Route::get('/alocacaosalas/cadastrar', [AlocacaoSalaController::class, "create"]);
 Route::post('/alocacaosalas/store', [AlocacaoSalaController::class, "store"]);
+Route::get('/alocacaosalas/{alocacao}', [AlocacaoSalaController::class, "show"])->name('alocacaosalas.show');
+Route::get('/alocacaosalas/{alocacao}/editar', [AlocacaoSalaController::class, "edit"])->name('alocacaosalas.edit');
+Route::put('/alocacaosalas/{id}', [AlocacaoSalaController::class, "update"])->name('alocacaosalas.update');
+Route::delete('/alocacaosalas/{alocacao}', [AlocacaoSalaController::class, "destroy"])->name('alocacaosalas.destroy');
