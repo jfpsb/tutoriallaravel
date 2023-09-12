@@ -17,16 +17,21 @@
     <input type="date" value="{{ $aluno->data_nasc }}" readonly />
 
     <h3>Matrículas</h3>
-    @if(count($matriculas) == 0)
-    Não há matrículas
+    @if (count($matriculas) == 0)
+        Não há matrículas
     @endif
-    @foreach($matriculas as $matricula)
-    {{$matricula->aluno}}
+    @foreach ($matriculas as $matricula)
+        {{ $matricula->getAlocacaoSala()->descricao() }} |
+        <form style="display: inline" action="{{ route('matriculas.destroy', ['matricula' => $matricula]) }}" method="post">
+            @csrf
+            @method('DELETE')
+            <button>Remover</button>
+        </form><br />
     @endforeach
 
     <br><br>
 
-    <form action="{{route('alunos.destroy', ['aluno' => $aluno])}}" method="POST">
+    <form action="{{ route('alunos.destroy', ['aluno' => $aluno]) }}" method="POST">
         @csrf
         @method('DELETE')
         <button type="submit">Deletar</button>

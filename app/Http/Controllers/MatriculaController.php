@@ -40,10 +40,10 @@ class MatriculaController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, Aluno $aluno)
     {
         $created = $this->matricula->create([
-            'aluno' => $request->input('aluno'),
+            'aluno' => $aluno,
             'alocacao_sala' => $request->input(('alocacao_sala'))
         ]);
 
@@ -81,9 +81,9 @@ class MatriculaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Matricula $matricula, Aluno $aluno)
+    public function destroy(Matricula $matricula)
     {
         $this->matricula->where('id', $matricula->id)->delete();
-        return redirect()->route('.index');
+        return redirect()->back();
     }
 }

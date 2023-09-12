@@ -30,8 +30,9 @@ Route::put('/alunos/{id}', [AlunoController::class, "update"])->name('alunos.upd
 Route::delete('/alunos/{aluno}', [AlunoController::class, "destroy"])->name('alunos.destroy');
 
 //Matriculas (dentro de alunos)
-Route::get('/alunos/matriculas/{aluno}', [MatriculaController::class, "create"])->name('alunos.matriculas');
-Route::post('/alunos/matriculas/store', [MatriculaController::class, "store"])->name('alunos.matriculas.store');
+Route::get('/alunos/{aluno}/matriculas', [MatriculaController::class, "create"])->name('matriculas.create');
+Route::post('/alunos/{aluno}/matriculas/store', [MatriculaController::class, "store"])->name('amatriculas.store');
+Route::delete('/alunos/matriculas/{matricula}', [MatriculaController::class, "destroy"])->name('matriculas.destroy');
 
 //Salas
 Route::get('/salas', [SalaController::class, "index"]);

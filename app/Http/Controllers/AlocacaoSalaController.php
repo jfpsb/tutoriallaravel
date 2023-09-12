@@ -47,7 +47,7 @@ class AlocacaoSalaController extends Controller
     {
         $created = $this->alocacaosala->create([
             'sala' => $request->input('sala'),
-            'componente_curricular' => $request->input('componente'),
+            'componente_curricular' => $request->input('componente_curricular'),
             'periodo_ano' => $request->input('periodo_ano'),
             'periodo_semestre' => $request->input('periodo_semestre'),
             'horario_inicio' => $request->input('horario_inicio'),
