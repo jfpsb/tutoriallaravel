@@ -39,6 +39,11 @@ class AlunoController extends Controller
      */
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'cpf' => 'required',
+            'nome' => 'required'
+        ]);
+
         $created = $this->aluno->create([
             'cpf' => $request->input('cpf'),
             'nome' => $request->input('nome'),
