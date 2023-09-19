@@ -10,6 +10,7 @@
 </head>
 
 <body>
+    <h2 class="masterheader">Sistema de matrículas - Escola BlaBlaBla</h2>
     <div class="container">
         @yield('content')
     </div>

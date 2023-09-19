@@ -1,17 +1,74 @@
+.masterheader {
+    background-color: lightgray;
+    padding: 10px;
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.pageheader {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+}
+
 body {
-    font-family: "Century Gothic";
+    font-family: "Century Gothic", Verdana, sans-serif;
     text-align: center;
 }
 
 input {
-    font-family: "Century Gothic";
+    font-family: "Century Gothic", Verdana, sans-serif;
 }
 
-.required {
-    color: red;
-}
-
-table {
+table,
+.ul-container {
     margin-left: auto;
     margin-right: auto;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0 auto 0 auto;
+    padding: 0;
+    width: 75%;
+}
+
+li {
+    padding: 5px;
+    font-weight: bold;
+}
+
+.ul-container {
+    background-color: lightskyblue;
+    width: 75%;
+}
+
+.cadastrar-link {
+    font-size: 20px;
+    padding: 15px;
+    margin-bottom: 15px;
+    display: inline-block;
+    border: 1px solid black;
+    background-color: lightgray;
+    text-decoration: none;
+}
+
+.cadastrar-link:link,
+.cadastrar-link:active,
+.cadastrar-link:visited {
+    color: black;
+}
+
+.home-link:hover {
+    font-size: 110%;
+}
+
+.li-link:visited,
+.li-link:active {
+    color: blue;
+}
+
+.li-link:hover {
+    color: red;
 }

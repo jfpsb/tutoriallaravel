@@ -5,13 +5,15 @@
 @endsection
 
 @section('content')
-    <h2>Componentes Curriculares</h2>
-    <a href="/componentescurriculares/cadastrar">Cadastrar novo componente curricular</a>
+    <div class="ul-container">
+        <h2>Componentes Curriculares</h2>
+        <a class="cadastrar-link" href="/componentescurriculares/cadastrar">Cadastrar novo componente curricular</a>
 
-    <ul>
-        @foreach ($componentes as $componente)
-            <li>{{ $componente->nome }} | <a
-                    href="{{ route('componentescurriculares.edit', ['componente' => $componente]) }}">Editar</a></li>
-        @endforeach
-    </ul>
+        <ul>
+            @foreach ($componentes as $componente)
+                <li>{{ $componente->nome }} | <a class="li-link"
+                        href="{{ route('componentescurriculares.edit', ['componente' => $componente]) }}">Editar</a></li>
+            @endforeach
+        </ul>
+    </div>
 @endsection
