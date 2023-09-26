@@ -8,13 +8,31 @@
     <title>Cadastro de alunos</title>
 @endsection
 
+@section('javascript')
+    <script>
+        $(document).ready(function() {
+            $("input").css("opacity", "0.6");
+            $("input").blur(function() {
+                $(this).fadeTo("slow", "0.6");
+                $(this).css("background-color", "white");
+            });
+            $("input").focus(function() {
+                $(this).fadeTo("slow", "1");
+                $(this).css("background-color", "lightskyblue");
+            });
+
+            $("#ipt").focus();
+        });
+    </script>
+@endsection
+
 @section('content')
     <h2>Insira os dados do aluno abaixo</h2>
     <form action="store" method="post">
         @csrf
 
         CPF:
-        <input type="text" name="cpf" required />
+        <input id="ipt" type="text" name="cpf" required />
         <br>
         Nome:
         <input type="text" name="nome" required />
