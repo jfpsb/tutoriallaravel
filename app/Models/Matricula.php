@@ -4,28 +4,22 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Matricula extends Model
 {
     use HasFactory;
 
-    private Aluno $alunoModel;
-    private Alocacao_Sala $alocacaoModel;
-    protected $fillable = ['aluno', 'alocacao_sala'];
+    protected $fillable = ['aluno_id', 'alocacao_sala_id'];
 
-    public function __construct()
+    public function aluno(): BelongsTo
     {
-        $this->alunoModel = new Aluno();
-        $this->alocacaoModel = new Alocacao_Sala();
+        return $this->belongsTo(Aluno::class);
     }
 
-    public function getAluno(): Aluno
+    public function alocacaoSala(): BelongsTo
     {
-        return $this->alunoModel->find($this->aluno);
-    }
-
-    public function getAlocacaoSala(): Alocacao_Sala
-    {
-        return $this->alocacaoModel->find($this->alocacao_sala);
+        return $this->belongsTo(Alocacao_Sala::class);
     }
 }

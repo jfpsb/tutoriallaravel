@@ -63,8 +63,7 @@ class AlunoController extends Controller
      */
     public function show(Aluno $aluno)
     {
-        $matriculas = $this->matricula->where('aluno', $aluno->id)->get();
-        return view('alunos/show', ['aluno' => $aluno, 'matriculas' => $matriculas]);
+        return view('alunos/show', ['aluno' => $aluno]);
     }
 
     /**

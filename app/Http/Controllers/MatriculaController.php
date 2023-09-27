@@ -43,8 +43,8 @@ class MatriculaController extends Controller
     public function store(Request $request, Aluno $aluno)
     {
         $created = $this->matricula->create([
-            'aluno' => $aluno,
-            'alocacao_sala' => $request->input(('alocacao_sala'))
+            'aluno_id' => $aluno->id,
+            'alocacao_sala_id' => $request->input(('alocacao_sala'))
         ]);
 
         if ($created) {

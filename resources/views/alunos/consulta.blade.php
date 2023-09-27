@@ -10,7 +10,7 @@
         <a class="cadastrar-link" href="/alunos/cadastrar">Cadastrar novo aluno</a>
         <ul>
             @foreach ($alunos as $aluno)
-                <li>{{ $aluno->nome }} | <a class="li-link" href="alunos/matriculas/{{ $aluno->id }}">Realizar Matrícula
+                <li>{{ $aluno->nome }} | <a class="li-link" href="alunos/{{ $aluno->id }}/matricular">Realizar Matrícula
                         Em Componentes
                         Curriculares</a> | <a class="li-link"
                         href="{{ route('alunos.edit', ['aluno' => $aluno]) }}">Editar</a> | <a class="li-link"

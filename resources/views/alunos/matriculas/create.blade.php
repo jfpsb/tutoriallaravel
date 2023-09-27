@@ -10,11 +10,10 @@
 
 @section('content')
     <h2>Realizar matrícula</h2>
-    <form action="store" method="post">
+    <form action="{{ route('matriculas.store', ['aluno' => $aluno]) }}" method="post">
         @csrf
         Aluno:
         <label><?php echo Str::upper("$aluno->nome"); ?></label>
-        <input type="hidden" name="aluno" value="{{ $aluno->id }}" />
         <br>
         Alocação de sala:
         <select name="alocacao_sala">

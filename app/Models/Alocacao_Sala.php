@@ -4,18 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Alocacao_Sala extends Model
 {
     use HasFactory;
 
-    private readonly Sala $salas;
-    private readonly ComponenteCurricular $componentes;
-
     public function __construct()
     {
-        $this->salas = new Sala();
-        $this->componentes = new ComponenteCurricular();
     }
 
     protected $table = "alocacao_salas";
@@ -24,8 +21,16 @@ class Alocacao_Sala extends Model
 
     public function descricao()
     {
-        $sala = $this->salas->find($this->sala);
-        $componente = $this->componentes->find($this->componente_curricular);
-        return $sala->descricao() . " - " . $componente->nome . " - " . $this->periodo_ano . "." . $this->periodo_semestre;
+        return $this->sala->descricao() . " - " . $this->componenteCurricular->nome . " - " . $this->periodo_ano . "." . $this->periodo_semestre;
+    }
+
+    public function sala() : BelongsTo
+    {
+        return $this->belongsTo(Sala::class);
+    }
+
+    public function componenteCurricular() : BelongsTo
+    {
+        return $this->belongsTo(ComponenteCurricular::class);
     }
 }
